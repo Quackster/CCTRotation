@@ -11,7 +11,7 @@ namespace CCTRotation
     class Program
     {
         private static StringBuilder _fileOutput;
-        private static string cctDirectory = @"C:\Users\Alex\Documents\GitHub\MassUnzip\bin\Debug\ccts";
+        private static string cctDirectory = @"ccts";
         private static string outputDirectory = Path.Combine(cctDirectory, "extracted");
 
         static void Main(string[] args)
@@ -121,7 +121,7 @@ namespace CCTRotation
 
                     try
                     {
-                        string data = line;
+                        string data = line.Substring(line.IndexOf("=") + 1);
                         var data2 = data.Substring(furniName.Length).Substring(9);
                         var data3 = data2.Substring(0, data2.IndexOf("_"));
 
@@ -139,7 +139,7 @@ namespace CCTRotation
 
                     try
                     {
-                        string data = line.Substring(line.IndexOf("=") + 1);
+                        string data = line;
                         var data2 = data.Substring(furniName.Length).Substring(9);
                         var data3 = data2.Substring(0, data2.IndexOf("_"));
 
