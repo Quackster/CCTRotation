@@ -37,6 +37,11 @@ namespace CCTRotation
 
                 var output = Path.Combine(outputDirectory, "unzipped_" + fileName);
 
+                if (fileName.Contains("_xx_s_"))
+                {
+                    continue;
+                }
+
                 if (!Directory.Exists(output))
                 {
                     Directory.CreateDirectory(output);
@@ -156,7 +161,7 @@ namespace CCTRotation
                     }
                 }
 
-                _fileOutput.Append("UPDATE items_definitions SET allowed_rotations = '" + string.Join(",", rotations) + "' WHERE sprite = '" + furniName + "';\r\n");
+                _fileOutput.Append("UPDATE items_definitions SET allowed_rotations = '" + string.Join(",", rotations) + "' WHERE sprite LIKE '" + furniName + "%';\r\n");
                 Console.WriteLine("Rotations for " + furniName + ": " + string.Join(",", rotations));
             }
             catch (Exception ex)
